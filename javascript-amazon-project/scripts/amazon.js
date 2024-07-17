@@ -4,6 +4,8 @@ import { formatCurrency } from './utils/money.js';
 
 let productsHTML = '';
 
+updateCartQuantity();
+
 products.forEach((product) => {
   productsHTML += `
     <div class="product-container">
@@ -88,6 +90,5 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
     addToCart(productId);
     updateCartQuantity();
     addedToCartText(productId);
-    
   });
 });
