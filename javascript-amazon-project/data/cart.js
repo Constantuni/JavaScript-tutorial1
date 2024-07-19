@@ -14,6 +14,17 @@ if(!cart){
   ];
 }
 
+export function updateCartQuantity(){
+  let cartQuantity = 0;
+
+    cart.forEach((cartItem) => {
+      cartQuantity += cartItem.quantity;
+    });
+
+    const cartQuantityElement = document.querySelector('.js-cart-quantity');
+    cartQuantityElement.innerHTML = cartQuantity;
+}
+
 export function saveToLocalStorage(){
   localStorage.setItem('cart', JSON.stringify(cart));
   console.log('cart saved to the local storage');
