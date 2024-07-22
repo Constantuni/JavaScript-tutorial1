@@ -3,7 +3,7 @@ import {products, getProduct} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
-import { renderPaymentSummary } from './paymentSummary.js';
+import {renderPaymentSummary} from './paymentSummary.js';
 
 const today = dayjs();
 let deliveryDate = today.add(cart.deliveryDays, 'days');
@@ -103,6 +103,7 @@ export function renderOrderSummary(){
       removeFromCart(productId);
       const containerElement = document.querySelector(`.js-cart-item-container-${productId}`);
       containerElement.remove();
+
       renderOrderSummary();
       renderPaymentSummary();
     });
@@ -114,6 +115,7 @@ export function renderOrderSummary(){
       //const deliveryOptionId = optionElement.dataset.productId;
       const {productId, deliveryOptionId} = optionElement.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
+      
       renderOrderSummary();
       renderPaymentSummary();
     });
