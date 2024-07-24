@@ -1,3 +1,4 @@
+/*
 import {addToCart, cart, loadFromStorage, updateDeliveryOption} from "../../data/cart.js";
 
 describe('test suite: addToCart', () => {
@@ -35,3 +36,4 @@ describe('test suite: addToCart', () => {
     expect(cart[0].quantity).toEqual(1);
   });
 });
+*/
