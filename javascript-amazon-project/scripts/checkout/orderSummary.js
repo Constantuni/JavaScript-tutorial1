@@ -5,22 +5,25 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 import {renderPaymentSummary} from './paymentSummary.js';
 
-const today = dayjs();
-let deliveryDate = today.add(cart.deliveryDays, 'days');
-let dateString = deliveryDate.format('dddd, MMMM D');
-
 export function renderOrderSummary(){
-
   let cartHTML = '';
+
+  const today = dayjs();
+  let dateString = 'Select a delivery option below.';
+  let deliveryDate = today;
 
   cart.forEach((cartItem) => {
     const productId = cartItem.productId;
 
-    const matchingProduct= getProduct(productId);
+    const matchingProduct = getProduct(productId);
 
     const deliveryOptionId = cartItem.deliveryOptionId;
 
     const deliveryOption = getDeliveryOption(deliveryOptionId);
+
+    deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+
+    dateString = deliveryDate.format('dddd, MMMM D');
     
     cartHTML += `
       <div class="js-cart-item-container-${matchingProduct.id} js-cart-item-container cart-item-container">
