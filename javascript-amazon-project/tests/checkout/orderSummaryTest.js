@@ -1,5 +1,6 @@
-import { renderOrderSummary } from "../../scripts/checkout/orderSummary.js";
+import {renderOrderSummary} from "../../scripts/checkout/orderSummary.js";
 import {loadFromStorage} from "../../data/cart.js";
+import {loadProducts} from "../../data/products.js";
 
 describe('test suite: renderOrderSummary', () => {
   it('displays the cart', () => {
@@ -7,6 +8,12 @@ describe('test suite: renderOrderSummary', () => {
       <div class="js-order-summary"></div>
       <div class="js-payment-summary"></div>
     `;
+
+    beforeAll((done) => {
+      loadProducts(() => {
+        done();
+      });
+    });
 
     spyOn(localStorage, 'getItem').and.callFake(() => {
       return JSON.stringify(
